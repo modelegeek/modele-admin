@@ -16,7 +16,7 @@
 <body>
 
 <div id="admin-panel">
-  <admin-home></admin-home>
+  <admin-panel></admin-panel>
 </div>
 
 <!-- Scripts -->

@@ -2,12 +2,15 @@
   <div>
     <sidebar></sidebar>
     <navbar></navbar>
+    <div id="page-container">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
 <script>
-  import navbar from "./_layout/navbar";
-  import sidebar from "./_layout/sidebar";
+  import navbar from "./navbar";
+  import sidebar from "./sidebar";
 
   export default {
     components: {
@@ -17,7 +20,3 @@
     name: "home"
   }
 </script>
-
-<style scoped>
-
-</style>

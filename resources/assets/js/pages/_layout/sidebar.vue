@@ -6,17 +6,29 @@
     </div>
     <ul class="nav flex-column">
       <li class="nav-item p-2">
-        <a class="nav-link active" href="#">
+        <route-link href-name="dashboard">
+          <i class="far fa-user"></i>
+          Dashboard
+        </route-link>
+      </li>
+
+      <li class="nav-item p-2">
+        <route-link href-name="users">
           <i class="far fa-user"></i>
           User <span class="sr-only">(current)</span>
-        </a>
+        </route-link>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+  import RouteLink from "../../components/route-link";
+
   export default {
-    name: "sidebar"
+    components: {
+      RouteLink
+    },
+    name: "sidebar",
   }
 </script>
