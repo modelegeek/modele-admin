@@ -8,6 +8,6 @@
 
   export default {
     components: { Home },
-    name: "dashboard"
+    name: "Dashboard"
   }
 </script>

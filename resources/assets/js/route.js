@@ -13,8 +13,14 @@ export const userRouter = {
   component: require('./pages/admin-panel/user/index')
 };
 
+export const pageNotFound = {
+  path: '/*',
+  name: 'error-404',
+  component: require('./pages/404')
+};
 
 export const routers = [
   dashboardRouter,
-  userRouter
+  userRouter,
+  pageNotFound
 ];

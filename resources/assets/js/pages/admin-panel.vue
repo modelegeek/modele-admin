@@ -12,7 +12,3 @@
     name: "admin-panel"
   }
 </script>
-
-<style scoped>
-
-</style>

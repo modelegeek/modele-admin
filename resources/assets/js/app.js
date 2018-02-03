@@ -1,5 +1,7 @@
 import VueRouter from 'vue-router'
 import {routers} from './route';
+import Histories from "./Classes/Histories";
+import Vuex from 'vuex'
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -11,11 +13,36 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 Vue.use(VueRouter);
+Vue.use(Vuex);
 
 let router = new VueRouter({
   mode: 'history',
   routes: routers
 });
+
+const histories = new Vuex.Store({
+  state: {
+    histories: new Histories()
+  },
+  mutations: {
+    addHistory (state, payload){
+      state.histories.pushHistory(payload.name, payload.path)
+    }
+  }
+})
+
+// let histories = new Histories();
+
+router.beforeEach((to, from, next) =>{
+  // running mutating
+  histories.commit('addHistory', {
+    name: to.name,
+    path: to.fullPath
+  })
+
+  // processed to next route
+  next();
+})
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -29,5 +56,6 @@ const app = new Vue({
   data: {
     currentRoute: window.location.pathname
   },
-  router: router,
+  store: histories,
+  router: router
 });

@@ -1,21 +1,27 @@
 <template>
   <div>
     <sidebar></sidebar>
-    <navbar></navbar>
     <div id="page-container">
-      <slot></slot>
+      <navbar></navbar>
+      <tab-navigation></tab-navigation>
+
+      <div id="page">
+        <slot></slot>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
   import navbar from "./navbar";
+  import TabNavigation from "./tab-navigation";
   import sidebar from "./sidebar";
 
   export default {
     components: {
       sidebar,
-      navbar
+      navbar,
+      TabNavigation
     },
     name: "home"
   }

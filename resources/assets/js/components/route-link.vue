@@ -1,5 +1,5 @@
 <template>
-  <a :class="{ active: isActive }" @click="go" href="/">
+  <a :class="{ active: isActive }" @click="go" href="#">
     <slot></slot>
   </a>
 </template>

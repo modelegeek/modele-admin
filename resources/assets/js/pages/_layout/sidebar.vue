@@ -15,7 +15,7 @@
       <li class="nav-item p-2">
         <route-link href-name="users">
           <i class="far fa-user"></i>
-          User <span class="sr-only">(current)</span>
+          User <span class="sr-only"></span>
         </route-link>
       </li>
     </ul>
