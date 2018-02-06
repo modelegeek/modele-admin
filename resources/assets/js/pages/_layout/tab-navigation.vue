@@ -18,9 +18,6 @@
       return {
         histories: this.$store.state.histories
       }
-    },
-    mounted (){
-      console.log(this.$store.state.histories)
     }
   }
 </script>

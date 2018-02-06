@@ -42,6 +42,11 @@ if ( token ) {
 }
 
 /**
+ * Register teh app name in meta
+ */
+window.appName = document.head.querySelector('meta[name="app-name"]').content;
+
+/**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.

@@ -7,6 +7,7 @@
 
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="app-name" content="{{ config('app.name', 'Laravel') }}">
 
   <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -15,9 +16,8 @@
 </head>
 <body>
 
-<div id="admin-panel">
-  <admin-panel></admin-panel>
-</div>
+{{-- vue instance --}}
+<div id="admin-panel"></div>
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>

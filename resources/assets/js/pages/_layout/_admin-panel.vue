@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import Home from "./_layout/home";
+  import Home from "./home";
 
   export default {
     components: { Home },

@@ -47,6 +47,15 @@ html, body {
   }
 }
 
+#admin-panel-main {
+  height: 100vh;
+}
+
+#page {
+  padding: 10px 10px 0 10px;
+  min-height: 100vh;
+}
+
 #page-container {
   padding-left: $sidebar-width !important;
   min-height: 100vh;

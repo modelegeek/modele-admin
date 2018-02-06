@@ -2,6 +2,7 @@ import VueRouter from 'vue-router'
 import {routers} from './route';
 import Histories from "./Classes/Histories";
 import Vuex from 'vuex'
+import Main from './pages/main.vue'
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -34,11 +35,14 @@ const histories = new Vuex.Store({
 // let histories = new Histories();
 
 router.beforeEach((to, from, next) =>{
-  // running mutating
-  histories.commit('addHistory', {
-    name: to.name,
-    path: to.fullPath
-  })
+  if ( from.name != 'login' || to.name != 'login' ) {
+    next();
+  } else {
+    histories.commit('addHistory', {
+      name: to.name,
+      path: to.fullPath
+    })
+  }
 
   // processed to next route
   next();
@@ -49,10 +53,10 @@ router.beforeEach((to, from, next) =>{
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-Vue.component('admin-panel', require('./pages/admin-panel'));
 
 const app = new Vue({
   el: '#admin-panel',
+  render: h => h(Main),
   data: {
     currentRoute: window.location.pathname
   },
