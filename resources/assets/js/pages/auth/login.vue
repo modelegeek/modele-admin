@@ -31,7 +31,7 @@
       login: function (){
         this.$router.push({
           name: 'dashboard',
-          params: {}
+          params: ''
         })
       }
     }

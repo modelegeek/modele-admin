@@ -35,7 +35,8 @@ const histories = new Vuex.Store({
 // let histories = new Histories();
 
 router.beforeEach((to, from, next) =>{
-  if ( from.name != 'login' || to.name != 'login' ) {
+
+  if ( to.name == 'login') {
     next();
   } else {
     histories.commit('addHistory', {

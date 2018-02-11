@@ -1,5 +1,3 @@
-// import Dashboard from './pages/admin-panel/dashboard'
-// import Index from './pages/admin-panel/user/index'
 import AdminPanel from './pages/_layout/_admin-panel'
 
 export const loginRouter = {
