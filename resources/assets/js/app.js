@@ -33,10 +33,9 @@ const histories = new Vuex.Store({
 })
 
 // let histories = new Histories();
-
 router.beforeEach((to, from, next) =>{
-
-  if ( to.name == 'login') {
+  NProgress.start();
+  if ( to.name == 'login' ) {
     next();
   } else {
     histories.commit('addHistory', {
@@ -49,18 +48,26 @@ router.beforeEach((to, from, next) =>{
   next();
 })
 
+router.afterEach((to) => {
+  NProgress.done()
+  window.scrollTo(0, 0);
+});
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+  // progressbar.js@1.0.0 version is used
+  // Docs: http://progressbarjs.readthedocs.org/en/1.0.0/
+
 const app = new Vue({
-  el: '#admin-panel',
-  render: h => h(Main),
-  data: {
-    currentRoute: window.location.pathname
-  },
-  store: histories,
-  router: router
-});
+    el: '#admin-panel',
+    render: h => h(Main),
+    data: {
+      currentRoute: window.location.pathname
+    },
+    store: histories,
+    router: router
+  });

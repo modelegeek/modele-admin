@@ -13,6 +13,8 @@ window._ = require('lodash');
 try {
   window.$ = window.jQuery = require('jquery');
 
+  window.NProgress = require('nprogress');
+
   require('bootstrap');
 } catch ( e ) {
 }

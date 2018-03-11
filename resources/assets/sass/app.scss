@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
+@import "~nprogress/nprogress.css";
 
 $sidebar-width: 200px;
 $tab-navigation-height: 34px;
@@ -12,15 +13,17 @@ html, body {
 
 #tab-navigation {
   height: $tab-navigation-height;
-  background: #8e8e8e;
+  background: #dadbdc;
 
   .tab-tag {
     border: 1px solid #fff;
     padding: 0 10px;
     border-radius: 5px;
+    background-color: white;
     a {
-      color: white;
+      color: #343a3f;
       text-decoration: none;
+      text-transform: capitalize;
 
       &:hover {
         text-decoration: none;
