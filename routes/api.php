@@ -11,8 +11,8 @@
 |
 */
 
-Route::POST('/user/register', 'Auth\RegisterController@register');
-Route::POST('/user/login', 'Auth\LoginController@login');
+Route::POST('/register', 'Auth\RegisterController@register');
+Route::POST('/login', 'Auth\LoginController@login');
 
 
 Route::group(['middleware' => 'auth:api'], function(){
