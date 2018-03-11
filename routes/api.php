@@ -11,12 +11,9 @@
 |
 */
 
-Route::POST('/register', 'Auth\RegisterController@register');
-Route::POST('/login', 'Auth\LoginController@login');
-
+Route::post('register', 'Auth\RegisterController@register');
+Route::post('login', 'Auth\LoginController@login');
 
 Route::group(['middleware' => 'auth:api'], function(){
-
-    Route::post('details', 'UserController@details');
-
+    Route::get('details', 'UserController@details');
 });
