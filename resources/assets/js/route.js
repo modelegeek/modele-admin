@@ -25,13 +25,18 @@ export const dashboardRouter = {
 };
 
 export const userRouter = {
-  path: '/users',
+  path: '/admin',
   component: AdminPanel,
   children: [
     {
       path: '',
-      name: 'users',
-      component: require('./pages/admin-panel/user/index')
+      name: 'admin',
+      component: require('./pages/admin-panel/admin/index')
+    },
+    {
+      path: 'create',
+      name: 'create-admin',
+      component: require('./pages/admin-panel/admin/create')
     },
   ]
 };

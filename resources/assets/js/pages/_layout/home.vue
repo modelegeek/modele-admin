@@ -6,7 +6,9 @@
       <tab-navigation></tab-navigation>
 
       <div id="page">
-        <slot></slot>
+        <div class="container-fluid">
+          <slot></slot>
+        </div>
       </div>
     </div>
   </div>

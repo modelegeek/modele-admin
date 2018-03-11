@@ -1,11 +1,6 @@
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-// Bootstrap
-@import "~bootstrap/scss/bootstrap";
-@import "~nprogress/nprogress.css";
-
 $sidebar-width: 200px;
 $tab-navigation-height: 34px;
+$tab-bg-color: #dadbdc;
 
 html, body {
   height: 100vh;
@@ -13,7 +8,7 @@ html, body {
 
 #tab-navigation {
   height: $tab-navigation-height;
-  background: #dadbdc;
+  background: $tab-bg-color;
 
   .tab-tag {
     border: 1px solid #fff;
@@ -54,17 +49,12 @@ html, body {
   height: 100vh;
 }
 
-#page {
-  padding: 10px 10px 0 10px;
-  min-height: 100vh;
-}
-
 #page-container {
   padding-left: $sidebar-width !important;
   min-height: 100vh;
 
   #page {
-    padding: 10px 10px 0 10px;
+    padding: 30px 10px 0 10px;
     min-height: calc(100vh - 56px - #{$tab-navigation-height});
   }
 }

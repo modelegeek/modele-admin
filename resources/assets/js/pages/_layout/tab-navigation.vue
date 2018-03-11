@@ -1,8 +1,8 @@
 <template>
-  <div id="tab-navigation" class="p-1">
+  <div id="tab-navigation" class="p-1 pl-2">
     <ul id="tab-tags" class="list-inline d-flex align-content-center mb-0">
       <li class="tab-tag list-inline-item" v-for="history in histories.histories">
-        <route-link :href-name="history.name">{{history.name}}</route-link>
+        <route-link :href-name="history.route_name">{{history.display_name}}</route-link>
       </li>
     </ul>
   </div>

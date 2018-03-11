@@ -1,0 +1,28 @@
+.card-header {
+  background-color: transparent;
+  margin: 0 1.3rem 8px;
+  border-bottom: 1px solid #adb5bd;
+  padding-left: 0;
+  padding-right: 0;
+  color: #6c757d;
+
+  .card-title {
+    margin-bottom: 0;
+  }
+
+  .card-subtitle {
+    font-size: 0.8rem;
+  }
+}
+
+.form-group {
+  label {
+    color: #6c757d !important;
+  }
+}
+
+.card {
+  -webkit-box-shadow: 2px 3px 6px 0px #6c757d;
+  -moz-box-shadow: 2px 3px 6px 0px #6c757d;
+  box-shadow: 2px 3px 6px 0px #6c757d;
+}

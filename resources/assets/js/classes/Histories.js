@@ -9,10 +9,12 @@ export default class Histories {
   /*
    * push new history tag in list of histories object
    */
-  pushHistory (name, route){
-    let newHistory = new HistoryTag(name, route);
+  pushHistory (routeName, route){
+    let displayName = routeName.replace('-', ' ');
 
-    let exists = this.tagExists(name)
+    let newHistory = new HistoryTag(displayName, routeName, route);
+
+    let exists = this.tagExists(routeName)
 
     if ( !exists )
       this.histories.push(newHistory);
@@ -25,7 +27,7 @@ export default class Histories {
     let exists = false; //false
 
     for ( let history of this.histories ) {
-      if ( history.name === name )
+      if ( history.route_name === name )
         exists = true; // true
     }
 
