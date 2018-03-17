@@ -6,8 +6,6 @@
         Create New Admin <span class="sr-only"></span>
       </route-link>
     </div>
-    <div class="col-12">
-    </div>
   </div>
 </template>
 
@@ -18,8 +16,13 @@
   export default {
     components: {
       Home,
-      RouteLink
+      RouteLink,
     },
-    name: "admin_index"
+    data (){
+      return {
+
+      }
+    },
+    name: "admin_index",
   }
 </script>
