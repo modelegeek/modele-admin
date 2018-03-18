@@ -2,13 +2,15 @@
 
 namespace App\Api;
 
-
+use App\Classes\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
 class UserController
 {
     public function details()
     {
-        dd(Auth::user());
+        $user = Auth::user();
+
+        return JsonResponse::success([], 200);
     }
 }

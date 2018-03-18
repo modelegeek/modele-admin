@@ -2,18 +2,23 @@
 
 namespace Tests\Unit;
 
+use App\Models\User;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ExampleTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /**
-     * A basic test example.
-     *
-     * @return void
+     * @test
+     * @group user
      */
-    public function testBasicTest()
+    public function it_return_a_full_name()
     {
-        $this->assertTrue(true);
+        $user = create(User::class, ['name' => 'Alex Tang']);
+
+        $this->assertTrue($user->full_name() == 'Alex Tang');
     }
 }
