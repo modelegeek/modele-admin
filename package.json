@@ -30,6 +30,7 @@
         "@fortawesome/fontawesome-free-solid": "^5.0.4",
         "bootstrap": "^4.0.0",
         "datatables.net-bs4": "^1.10.16",
+        "noty": "^3.2.0-beta",
         "nprogress": "^0.2.0",
         "popper.js": "^1.12.9",
         "vue-router": "^3.0.1",

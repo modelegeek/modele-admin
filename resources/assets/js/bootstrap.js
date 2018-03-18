@@ -11,11 +11,20 @@ try {
 
   window.NProgress = require('nprogress');
 
+  window.Noty = require('noty');
+
   require('bootstrap');
 
   require('datatables.net-bs4');
 } catch ( e ) {
 }
+
+window.Noty.overrideDefaults({
+  layout: 'bottomRight',
+  theme: 'metroui',
+  timeout: 3500,
+  progressBar: true,
+});
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
