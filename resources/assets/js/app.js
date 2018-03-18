@@ -31,6 +31,11 @@ const histories = {
     add (state, payload){
       state.histories.pushHistory(payload.name, payload.path)
     }
+  },
+  getters: {
+    list: state => {
+      return state.histories.histories;
+    }
   }
 };
 
@@ -46,6 +51,11 @@ const jwt = {
     destroy (state){
       state.token.destroy()
     }
+  },
+  getters: {
+    token: state => {
+      return state.token.token;
+    }
   }
 };
 
@@ -60,11 +70,12 @@ const store = new Vuex.Store({
 router.beforeEach((to, from, next) =>{
   NProgress.start();
 
+  let jwtToken = store.getters['jwt/token'];
   // middleware checking
   if ( to.matched.some(record => record.meta.requiresAuth) ) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
-    if ( store.state.jwt.token == null ) {
+    if ( jwtToken == null ) {
       next({ name: 'login', })
     } else {
       next()
@@ -73,7 +84,7 @@ router.beforeEach((to, from, next) =>{
     next() // make sure to always call next()!
   }
 
-  if ( store.state.jwt.token && to.name == 'login' ) {
+  if ( jwtToken && to.name == 'login' ) {
     next({ name: 'dashboard', })
   }
 
