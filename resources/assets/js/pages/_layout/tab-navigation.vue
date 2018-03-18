@@ -16,7 +16,7 @@
     name: "tab-navigation",
     data (){
       return {
-        histories: this.$store.state.histories
+        histories: this.$store.state.histories.histories
       }
     }
   }

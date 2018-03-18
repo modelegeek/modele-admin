@@ -51,7 +51,8 @@
         errors: new ErrorResponse(),
         email: '',
         password: '',
-        appName: window.appName
+        appName: window.appName,
+        jwt: this.$store.state.jwt
       }
     },
     methods: {
@@ -60,6 +61,10 @@
         let data = { email: this.email, password: this.password };
         axios.post('/api/login', data)
              .then((response) =>{
+               let dataResponse = response.data;
+               vm.$store.commit('jwt/update', {
+                 token: dataResponse.data.token,
+               })
                this.$router.push({ name: 'dashboard' });
                new Helper().showNoty('Login successfully', 'success');
              })

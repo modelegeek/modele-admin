@@ -13,7 +13,7 @@ try {
 
   window.Noty = require('noty');
 
-  require('bootstrap');
+  // require('bootstrap');
 
   require('datatables.net-bs4');
 } catch ( e ) {

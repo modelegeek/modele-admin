@@ -30,7 +30,7 @@ export default class ErrorResponse {
     if ( refresh )
       this.refresh();
 
-    if ( error.status == 422 ) {
+    if ( error.status && error.status == 422 ) {
       this.restructureValidatorBag(error)
     } else {
       this.restructureErrorBag(error)
