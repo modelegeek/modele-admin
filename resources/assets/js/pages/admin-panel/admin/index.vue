@@ -18,11 +18,11 @@
       Home,
       RouteLink,
     },
-    data (){
-      return {
 
-      }
+    data (){
+      return {}
     },
+
     name: "admin_index",
   }
 </script>

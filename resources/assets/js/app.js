@@ -3,6 +3,7 @@ import {routers} from './route';
 import Histories from "./Classes/Histories";
 import Vuex from 'vuex'
 import Main from './pages/main.vue'
+import JwtToken from "./classes/JwtToken";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -21,34 +22,85 @@ let router = new VueRouter({
   routes: routers
 });
 
-const histories = new Vuex.Store({
+const histories = {
+  namespaced: true,
   state: {
     histories: new Histories()
   },
   mutations: {
-    addHistory (state, payload){
+    add (state, payload){
       state.histories.pushHistory(payload.name, payload.path)
     }
+  },
+  getters: {
+    list: state => {
+      return state.histories.histories;
+    }
+  }
+};
+
+const jwt = {
+  namespaced: true,
+  state: {
+    token: new JwtToken()
+  },
+  mutations: {
+    update (state, payload){
+      state.token.update(payload.token)
+    },
+    destroy (state){
+      state.token.destroy()
+    }
+  },
+  getters: {
+    token: state => {
+      return state.token.token;
+    }
+  }
+};
+
+const store = new Vuex.Store({
+  modules: {
+    histories: histories,
+    jwt: jwt
   }
 })
 
 // let histories = new Histories();
 router.beforeEach((to, from, next) =>{
   NProgress.start();
-  if ( to.name == 'login' ) {
-    next();
+
+  let jwtToken = store.getters['jwt/token'];
+  // middleware checking
+  if ( to.matched.some(record => record.meta.requiresAuth) ) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if ( jwtToken == null ) {
+      next({ name: 'login', })
+    } else {
+      next()
+    }
   } else {
-    histories.commit('addHistory', {
+    next() // make sure to always call next()!
+  }
+
+  if ( jwtToken && to.name == 'login' ) {
+    next({ name: 'dashboard', })
+  }
+
+  if ( to.name != 'login' ) {
+    store.commit('histories/add', {
       name: to.name,
       path: to.fullPath
     })
   }
 
-  // processed to next route
-  next();
+  //
+  // // processed to next route
+  // next();
 })
 
-router.afterEach((to) => {
+router.afterEach((to) =>{
   NProgress.done()
   window.scrollTo(0, 0);
 });
@@ -68,6 +120,6 @@ const app = new Vue({
     data: {
       currentRoute: window.location.pathname
     },
-    store: histories,
+    store: store,
     router: router
   });

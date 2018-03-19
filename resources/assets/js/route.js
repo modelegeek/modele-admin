@@ -19,7 +19,8 @@ export const dashboardRouter = {
     {
       path: '',
       name: 'dashboard',
-      component: require('./pages/admin-panel/dashboard')
+      component: require('./pages/admin-panel/dashboard'),
+      meta: { requiresAuth: true }
     },
   ]
 };
@@ -31,12 +32,14 @@ export const userRouter = {
     {
       path: '',
       name: 'admin',
-      component: require('./pages/admin-panel/admin/index')
+      component: require('./pages/admin-panel/admin/index'),
+      meta: { requiresAuth: true }
     },
     {
       path: 'create',
       name: 'create-admin',
-      component: require('./pages/admin-panel/admin/create')
+      component: require('./pages/admin-panel/admin/create'),
+      meta: { requiresAuth: true }
     },
   ]
 };
