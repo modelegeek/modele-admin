@@ -15,5 +15,9 @@ Route::post('register', 'Auth\RegisterController@register');
 Route::post('login', 'Auth\LoginController@login');
 
 Route::group(['middleware' => 'auth:api'], function(){
-    Route::get('details', 'UserController@details');
+    Route::get('/user/index', 'UserController@index')->name('user.index');
+    Route::get('/user/edit/{user}', 'UserController@edit')->name('user.edit');
+    Route::post('/user/create', 'UserController@store')->name('user.store');
+    Route::patch('/user/edit/{user}', 'UserController@update')->name('user.update');
+    Route::delete('/user/destroy/{user}', 'UserController@destroy')->name('user.destroy');
 });

@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Monster
- * Date: 02/12/2017
- * Time: 1:21 PM
- */
 
 namespace App\Api\Auth;
 
