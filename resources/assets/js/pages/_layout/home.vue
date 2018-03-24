@@ -15,9 +15,9 @@
 </template>
 
 <script>
-  import navbar from "./navbar";
-  import TabNavigation from "./tab-navigation";
-  import sidebar from "./sidebar";
+  import navbar from "../../components/navbar";
+  import TabNavigation from "../../components/tab-navigation";
+  import sidebar from "../../components/sidebar";
 
   export default {
     components: {

@@ -23,7 +23,7 @@
 </template>
 
 <script>
-  import RouteLink from "../../components/route-link";
+  import RouteLink from "./route-link";
 
   export default {
     components: {
