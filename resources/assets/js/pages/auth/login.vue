@@ -52,17 +52,17 @@
         email: '',
         password: '',
         appName: window.appName,
-        jwt: this.$store.state.jwt
       }
     },
     methods: {
       login: function (){
         let vm = this;
         let data = { email: this.email, password: this.password };
+
         axios.post('/api/login', data)
              .then((response) =>{
                let dataResponse = response.data;
-               vm.$store.commit('jwt/update', {
+               vm.$store.dispatch('authorize/update', {
                  token: dataResponse.data.token,
                })
                this.$router.push({ name: 'dashboard' });

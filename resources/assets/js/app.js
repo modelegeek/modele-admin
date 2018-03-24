@@ -1,9 +1,7 @@
 import VueRouter from 'vue-router'
 import {routers} from './route';
-import Histories from "./Classes/Histories";
-import Vuex from 'vuex'
 import Main from './pages/main.vue'
-import JwtToken from "./classes/JwtToken";
+import store from './state'
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -13,64 +11,18 @@ import JwtToken from "./classes/JwtToken";
 require('./bootstrap');
 
 window.Vue = require('vue');
-
 Vue.use(VueRouter);
-Vue.use(Vuex);
 
 let router = new VueRouter({
   mode: 'history',
   routes: routers
 });
 
-const histories = {
-  namespaced: true,
-  state: {
-    histories: new Histories()
-  },
-  mutations: {
-    add (state, payload){
-      state.histories.pushHistory(payload.name, payload.path)
-    }
-  },
-  getters: {
-    list: state => {
-      return state.histories.histories;
-    }
-  }
-};
-
-const jwt = {
-  namespaced: true,
-  state: {
-    token: new JwtToken()
-  },
-  mutations: {
-    update (state, payload){
-      state.token.update(payload.token)
-    },
-    destroy (state){
-      state.token.destroy()
-    }
-  },
-  getters: {
-    token: state => {
-      return state.token.token;
-    }
-  }
-};
-
-const store = new Vuex.Store({
-  modules: {
-    histories: histories,
-    jwt: jwt
-  }
-})
-
 // let histories = new Histories();
 router.beforeEach((to, from, next) =>{
   NProgress.start();
 
-  let jwtToken = store.getters['jwt/token'];
+  let jwtToken = store.getters['authorize/token'];
   // middleware checking
   if ( to.matched.some(record => record.meta.requiresAuth) ) {
     // this route requires auth, check if logged in
@@ -89,7 +41,7 @@ router.beforeEach((to, from, next) =>{
   }
 
   if ( to.name != 'login' ) {
-    store.commit('histories/add', {
+    store.dispatch('histories/add', {
       name: to.name,
       path: to.fullPath
     })
@@ -111,15 +63,12 @@ router.afterEach((to) =>{
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-  // progressbar.js@1.0.0 version is used
-  // Docs: http://progressbarjs.readthedocs.org/en/1.0.0/
-
 const app = new Vue({
-    el: '#admin-panel',
-    render: h => h(Main),
-    data: {
-      currentRoute: window.location.pathname
-    },
-    store: store,
-    router: router
-  });
+  el: '#admin-panel',
+  render: h => h(Main),
+  data: {
+    currentRoute: window.location.pathname
+  },
+  store: store,
+  router: router
+});

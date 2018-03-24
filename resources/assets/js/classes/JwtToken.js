@@ -1,19 +1,30 @@
+import Vue from 'vue';
+
 export default class JwtToken {
   constructor (){
-    this.token = this.retrieve();
+    this.token = null;
+    this.retrieve();
   }
 
-  update (token){
-    this.token = token;
-    localStorage.setItem('authorization', token);
+  update (newToken){
+    this.token = newToken;
+
+    localStorage.setItem('authorization', newToken);
   }
 
   retrieve (){
-    return localStorage.getItem('authorization');
+    let token = localStorage.getItem('authorization');
+
+    if(token == "null" || token == "undefined"){
+      return this.token = null;
+    }
+
+    this.token = token;
   }
 
   destroy (){
-    this.token = null;
     localStorage.setItem('authorization', null);
+
+    this.token = null;
   }
 }

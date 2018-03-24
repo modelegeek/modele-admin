@@ -1,7 +1,5 @@
 <template>
-  <div id="admin-panel-main">
-    <router-view></router-view>
-  </div>
+  <router-view></router-view>
 </template>
 
 <script>
@@ -9,7 +7,3 @@
     name: "app"
   }
 </script>
-
-<style scoped>
-
-</style>
