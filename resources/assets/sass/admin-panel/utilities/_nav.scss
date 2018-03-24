@@ -1,0 +1,28 @@
+#navbar-admin {
+  height: $nav-height;
+}
+
+#sidebar-toggle {
+  cursor: pointer;
+  color: $dark;
+  font-size: 1.4rem;
+  font-weight: 100;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  width: $sidebar-width;
+  z-index: $zindex-fixed;
+
+  a {
+    color: $white;
+  }
+
+  .sidebar-title {
+    padding: $nav-link-padding-y $nav-link-padding-x;
+  }
+}

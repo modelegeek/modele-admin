@@ -1,0 +1,9 @@
+#page-container {
+  padding-left: $sidebar-width !important;
+  min-height: 100vh;
+
+  #page {
+    padding: 1rem 0;
+    min-height: calc(100vh - #{$nav-height} - #{$tab-navigation-height});
+  }
+}

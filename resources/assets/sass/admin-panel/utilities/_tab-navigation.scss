@@ -1,0 +1,20 @@
+#tab-navigation {
+  height: $tab-navigation-height;
+  background: $tab-bg-color;
+
+  .tab-tag {
+    border: 1px solid #fff;
+    padding: 0 10px;
+    border-radius: 5px;
+    background-color: white;
+    a {
+      color: #343a3f;
+      text-decoration: none;
+      text-transform: capitalize;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}

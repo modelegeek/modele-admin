@@ -1,62 +1,12 @@
 $sidebar-width: 200px;
+$nav-height: 49px;
 $tab-navigation-height: 34px;
 $tab-bg-color: #dadbdc;
 
+@import "utilities/utilities";
+
 html, body {
   height: 100vh;
-}
-
-#tab-navigation {
-  height: $tab-navigation-height;
-  background: $tab-bg-color;
-
-  .tab-tag {
-    border: 1px solid #fff;
-    padding: 0 10px;
-    border-radius: 5px;
-    background-color: white;
-    a {
-      color: #343a3f;
-      text-decoration: none;
-      text-transform: capitalize;
-
-      &:hover {
-        text-decoration: none;
-      }
-    }
-  }
-}
-
-.sidebar {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
-  width: $sidebar-width;
-  z-index: $zindex-fixed;
-
-  a {
-    color: $white;
-  }
-
-  .sidebar-title {
-    padding: $nav-link-padding-y $nav-link-padding-x;
-  }
-}
-
-#admin-panel-main {
-  height: 100vh;
-}
-
-#page-container {
-  padding-left: $sidebar-width !important;
-  min-height: 100vh;
-
-  #page {
-    padding: 30px 10px 0 10px;
-    min-height: calc(100vh - 56px - #{$tab-navigation-height});
-  }
 }
 
 #navbar-admin {
