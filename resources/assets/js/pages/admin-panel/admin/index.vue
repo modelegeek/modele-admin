@@ -11,11 +11,10 @@
 
 <script>
   import RouteLink from "../../../components/route-link";
-  import Home from "../../_layout/home";
 
   export default {
+
     components: {
-      Home,
       RouteLink,
     },
 

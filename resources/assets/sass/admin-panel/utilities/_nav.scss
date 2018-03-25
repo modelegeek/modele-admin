@@ -1,5 +1,16 @@
+$sidebar-transitions: ('width 0.5s', 'opacity 0.5s linear');
+
 #navbar-admin {
-  height: $nav-height;
+  padding: 0;
+
+  #navbar-top {
+    height: $nav-height;
+    padding: 0.2em 1em;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
 #sidebar-toggle {
@@ -10,13 +21,8 @@
 }
 
 .sidebar {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  @include multiple-transition($sidebar-transitions);
   width: $sidebar-width;
-  z-index: $zindex-fixed;
 
   a {
     color: $white;
@@ -24,5 +30,11 @@
 
   .sidebar-title {
     padding: $nav-link-padding-y $nav-link-padding-x;
+  }
+
+  &.close {
+    visibility: hidden;
+    width: 0;
+    opacity: 0;
   }
 }

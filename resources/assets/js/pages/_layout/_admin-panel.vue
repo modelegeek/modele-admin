@@ -1,14 +1,27 @@
 <template>
-  <home>
-    <router-view></router-view>
-  </home>
+  <section id="admin-app" class="d-flex">
+    <sidebar></sidebar>
+    <div id="page-container">
+      <navbar></navbar>
+
+      <div id="page">
+        <div class="container-fluid">
+          <router-view></router-view>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
-  import Home from "./home";
+  import Sidebar from "../../components/sidebar";
+  import Navbar from "../../components/navbar";
 
   export default {
-    components: { Home },
+    components: {
+      Navbar,
+      Sidebar
+    },
     name: "admin-panel"
   }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <!--<div style="left: 0; position: absolute">-->
-  <div class="sidebar bg-dark">
+  <div class="sidebar bg-dark" :class="{'close': !sidebarStatus}">
     <div class="sidebar-title">
       <a class="navbar-brand" href="/">Admin Panel</a>
     </div>
@@ -30,5 +30,15 @@
       RouteLink
     },
     name: "sidebar",
+    data(){
+      return {
+
+      }
+    },
+    computed: {
+      sidebarStatus () {
+        return this.$store.getters['navbar/toggleStatus']
+      }
+    },
   }
 </script>

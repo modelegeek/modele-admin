@@ -1,12 +1,17 @@
 $sidebar-width: 200px;
-$nav-height: 49px;
+$nav-height: 40px;
 $tab-navigation-height: 34px;
 $tab-bg-color: #dadbdc;
 
+@import "_mixin/mixin";
 @import "utilities/utilities";
 
 html, body {
   height: 100vh;
+}
+
+#admin-app{
+  height: 100%;
 }
 
 #navbar-admin {

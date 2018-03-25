@@ -1,0 +1,19 @@
+@mixin transitions($property, $duration, $method: ease-out) {
+  -webkit-transition: $property $duration $method;
+  -moz-transition: $property $duration $method;
+  -o-transition: $property $duration $method;
+  transition: $property $duration $method;
+}
+
+@mixin multiple-transition($transitions){
+
+  $allTransitions: '';
+  @each $transition in $transitions{
+    $allTransitions: unquote($allTransitions + $transition + ',')
+  }
+
+  -webkit-transition: $allTransitions;
+  -moz-transition: $allTransitions;
+  -o-transition: $allTransitions;
+  transition: $allTransitions;
+}
