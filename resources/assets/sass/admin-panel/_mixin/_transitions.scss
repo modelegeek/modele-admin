@@ -6,7 +6,6 @@
 }
 
 @mixin multiple-transition($transitions){
-
   $allTransitions: '';
   @each $transition in $transitions{
     $allTransitions: unquote($allTransitions + $transition + ',')

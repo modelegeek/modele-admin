@@ -61,6 +61,6 @@ export default class ErrorResponse {
    * @param error
    */
   restructureValidatorBag (error){
-    this.validation = error.data.user_message;
+    this.validation = error.data.errors;
   }
 }

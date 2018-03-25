@@ -16,42 +16,18 @@ use Laravel\Passport\PersonalAccessTokenFactory;
 
 class LoginController extends Controller
 {
+    /*
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | return a token of jwt to access the app. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+    */
 
     use AuthenticatesUsers;
-
-
-    public function login(Request $request)
-    {
-        $validator = $this->validateLogin($request);
-
-        if ($validator->fails()) {
-
-            $developerMsg = "Validation Error";
-            $userMsg = $validator->errors();
-
-            return JsonResponse::validateError($developerMsg, $userMsg);
-        }
-
-        // If the class is using the ThrottlesLogins trait, we can automatically throttle
-        // the login attempts for this application. We'll key this by the username and
-        // the IP address of the client making these requests into this application.
-        if ($this->hasTooManyLoginAttempts($request)) {
-            $this->fireLockoutEvent($request);
-
-            return $this->sendLockoutResponse($request);
-        }
-
-        if ($this->attemptLogin($request)) {
-            return $this->sendLoginResponse($request);
-        }
-
-        // If the login attempt was unsuccessful we will increment the number of attempts
-        // to login and redirect the user back to the login form. Of course, when this
-        // user surpasses their maximum number of attempts they will get locked out.
-        $this->incrementLoginAttempts($request);
-
-        return $this->sendFailedLoginResponse($request);
-    }
 
     /**
      * @param Request $request
@@ -65,14 +41,14 @@ class LoginController extends Controller
 
         throw ValidationException::withMessages([
             $this->username() => [Lang::get('auth.throttle', ['seconds' => $seconds])],
-        ])->status(423);
+        ])->status(429);
     }
 
     /**
      * Send the response after the user was authenticated.
      *
      * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     protected function sendLoginResponse(Request $request)
     {
@@ -89,24 +65,16 @@ class LoginController extends Controller
 
     /**
      * @param Request $request
-     * @throws ValidationException
+     * @return \Illuminate\Http\JsonResponse
      */
     protected function sendFailedLoginResponse(Request $request)
     {
         $developerMsg = 'Validation error';
         $userMsg = 'These credentials do not match our records';
-        $errorCode = '422';
+        $errorCode = '400';
 
         return JsonResponse::validateError($developerMsg, $userMsg, $errorCode);
 
-    }
-
-    protected function validateLogin(Request $request)
-    {
-        return $validatedData = Validator::make($request->all(), [
-            $this->username() => 'required|string',
-            'password'        => 'required|string',
-        ]);
     }
 
 }

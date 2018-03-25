@@ -29,9 +29,9 @@ class JsonResponse
     public static function validateError($developerMsg, $userMsg, $errorCode = 422)
     {
         return self::sent([
-            'developerMessage' => $developerMsg,
-            'userMessage'      => $userMsg,
-            'errorCode'        => $errorCode
+            'developer_message' => $developerMsg,
+            'user_message'      => $userMsg,
+            'code'              => $errorCode
         ], $errorCode);
     }
 
@@ -45,10 +45,10 @@ class JsonResponse
     public static function success($developerMsg, $userMsg, $data = null, $code = 200)
     {
         return self::sent([
-            'developerMessage' => $developerMsg,
-            'userMessage'      => $userMsg,
-            'code'             => $code,
-            'data'             => $data
+            'developer_message' => $developerMsg,
+            'user_message'      => $userMsg,
+            'code'              => $code,
+            'data'              => $data
         ], $code);
     }
 
