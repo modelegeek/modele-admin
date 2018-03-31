@@ -2,10 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserLoginTest extends TestCase
 {
@@ -17,21 +16,19 @@ class UserLoginTest extends TestCase
      */
     public function it_can_login()
     {
-        $user = create('App\Models\User', [
-            'password' => bcrypt('111111'),
-        ]);
+        $user = create(User::class);
 
         $data = [
-            'email'    => $user->email,
-            'password' => '111111',
+            'email' => $user->email,
+            'password' => 'secret',
         ];
 
         $this->post('/api/login', $data)
             ->assertStatus(200)
             ->assertJson([
-                'data' => [
-                    'token' => true,
-                ],
+                'access_token'  => true,
+                'token_type'    => true,
+                'refresh_token' => true,
             ]);
     }
 }

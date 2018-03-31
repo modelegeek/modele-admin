@@ -19,6 +19,6 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
     return [
         'name'     => $faker->name,
         'email'    => $faker->unique()->safeEmail,
-        'password' => $password // secret
+        'password' => $password ?? 'secret'// secret
     ];
 });

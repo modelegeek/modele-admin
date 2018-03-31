@@ -21,7 +21,7 @@ abstract class TestCase extends BaseTestCase
 
         $this->disableExceptionHandling();
 
-        $this->artisan('passport:install');
+        $this->artisan('passport:client', ['--password' => null, '--name' => 'Vue Admin Password Grant']);
 
         // $this->artisan('db:seed', ['--class' => 'RolesTableSeeder']);
     }
@@ -32,23 +32,22 @@ abstract class TestCase extends BaseTestCase
      */
     protected function signIn($user = null)
     {
-        $user = $user ?? create('App\Models\User', [
-            'password' => bcrypt('111111'),
-        ]);
+        $user = $user ?? create('App\Models\User');
 
         $data = [
             'email'    => $user->email,
-            'password' => '111111',
+            'password' => 'secret',
         ];
 
         $response = $this->post('/api/login', $data);
-        $token = $response->getData()->data->token;
+        $tokenResponse = json_decode($response->getContent());
 
         $headers = [
-            'HTTP_Authorization' => "Bearer $token"
+            'Accept'        => 'application/json',
+            'Authorization' => "$tokenResponse->token_type $tokenResponse->access_token"
         ];
 
-        return $headers;
+        return compact('tokenResponse', 'headers');
     }
 
 
