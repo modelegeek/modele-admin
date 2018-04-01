@@ -35,6 +35,7 @@ class Handler extends ExceptionHandler
      *
      * @param  \Exception $exception
      * @return void
+     * @throws Exception
      */
     public function report(Exception $exception)
     {
@@ -51,17 +52,5 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         return parent::render($request, $exception);
-    }
-
-    protected function unauthenticated($request, AuthenticationException $exception)
-    {
-        return $request->expectsJson()
-            ? $this->jsonResponse()
-            : redirect()->guest(route('login'));
-    }
-
-    private function jsonResponse()
-    {
-        return JsonResponse::error("not authenticated","not authenticated",401);
     }
 }

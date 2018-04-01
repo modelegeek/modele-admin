@@ -14,9 +14,9 @@ class ViewUserDetailTest extends TestCase
     /** @test */
     public function it_can_view_detail()
     {
-        $headers = $this->signIn();
+        $loginResponse = $this->signIn();
 
-        $this->get('/api/details', $headers)
+        $this->get('/api/details', $loginResponse['headers'])
             ->assertStatus(200);
     }
 }

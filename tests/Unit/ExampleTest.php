@@ -17,7 +17,7 @@ class ExampleTest extends TestCase
      */
     public function it_return_a_full_name()
     {
-        $user = create(User::class, ['name' => 'Alex Tang']);
+        $user = create(User::class, ['name' => 'Alex Tang', 'password' => '111111']);
 
         $this->assertTrue($user->full_name() == 'Alex Tang');
     }
