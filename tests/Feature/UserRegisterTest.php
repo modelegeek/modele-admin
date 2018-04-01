@@ -7,12 +7,11 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class UserLoginTest extends TestCase
+class UserRegisterTest extends TestCase
 {
     use DatabaseMigrations;
 
     /**
-     * @group user
      * @test
      */
     public function it_can_register()
