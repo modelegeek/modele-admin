@@ -7,19 +7,26 @@ use App\Models\User;
 use http\Env\Request;
 use Illuminate\Support\Facades\Auth;
 use UserService;
+use Yajra\DataTables\Facades\DataTables;
 
 class UserController
 {
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
     public function index()
     {
-        $users = User::all();
+        $model = User::query();
 
-        $developerMsg = 'Success';
-        $userMsg = 'Success';
+        $users = DataTables::eloquent($model)->toArray();
 
-        return JsonResponse::success($developerMsg, $userMsg, $users, 200);
+        return response()->json($users);
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function edit()
     {
         $user = Auth::user();

@@ -13,11 +13,10 @@
 
 Route::post('login', 'Controllers\Auth\LoginController@login');
 
-Route::group(['middleware' => 'auth:api'], function(){
-    Route::get('/user', 'UserController@details')->name('user.detail');
-    Route::get('/user/index', 'UserController@index')->name('user.index');
-    Route::get('/user/edit/{user}', 'UserController@edit')->name('user.edit');
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::get('/user', 'UserController@index')->name('user.index');
     Route::post('/user/create', 'UserController@store')->name('user.store');
+    Route::get('/user/edit/{user}', 'UserController@edit')->name('user.edit');
     Route::patch('/user/edit/{user}', 'UserController@update')->name('user.update');
     Route::delete('/user/destroy/{user}', 'UserController@destroy')->name('user.destroy');
 });

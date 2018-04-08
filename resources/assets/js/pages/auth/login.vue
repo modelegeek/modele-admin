@@ -47,30 +47,32 @@
   import axios from "axios";
 
   export default {
-    name: '',
-    data (){
+    name    :'',
+    data() {
       return {
-        errors: new ErrorResponse(),
-        email: '',
-        password: '',
-        appName: window.appName,
+        errors   :new ErrorResponse(),
+        email    :'',
+        password :'',
+        appName  :window.appName,
       }
     },
-    methods: {
-      login: function (){
+    methods :{
+      login :function () {
         let vm = this;
-        let data = { email: this.email, password: this.password };
+        let data = { email :this.email, password :this.password };
 
         axios.post('/api/login', data)
-             .then((response) =>{
+             .then((response) => {
                let dataResponse = response.data;
-               vm.$store.dispatch('authorize/update', {
-                 token: dataResponse.access_token,
-               })
-               this.$router.push({ name: 'dashboard' });
+               vm.$store.dispatch('authorize/login', dataResponse);
+
+               return response;
+             })
+             .then(() => {
+               this.$router.push({ name :'dashboard' });
                new Helper().showNoty('Login successfully', 'success');
              })
-             .catch((error) =>{
+             .catch((error) => {
                vm.errors.update(error.response);
                if ( vm.errors.general.message != '' ) {
                  new Helper().showNoty(vm.errors.general.message, 'error');
