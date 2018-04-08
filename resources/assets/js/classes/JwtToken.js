@@ -1,5 +1,3 @@
-import Vue from 'vue';
-
 export default class JwtToken {
   constructor (){
     this.token = null;
@@ -9,13 +7,13 @@ export default class JwtToken {
   update (newToken){
     this.token = newToken;
 
-    localStorage.setItem('authorization', newToken);
+    window.localStorage.setItem('authorization', newToken);
   }
 
   retrieve (){
-    let token = localStorage.getItem('authorization');
+    let token = window.localStorage.getItem('authorization');
 
-    if(token == "null" || token == "undefined"){
+    if ( token == "null" || token == "undefined" ) {
       return this.token = null;
     }
 
@@ -23,7 +21,7 @@ export default class JwtToken {
   }
 
   destroy (){
-    localStorage.setItem('authorization', null);
+    window.localStorage.setItem('authorization', null);
 
     this.token = null;
   }

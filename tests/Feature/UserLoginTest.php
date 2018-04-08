@@ -19,7 +19,7 @@ class UserLoginTest extends TestCase
         $user = create(User::class);
 
         $data = [
-            'email' => $user->email,
+            'email'    => $user->email,
             'password' => 'secret',
         ];
 

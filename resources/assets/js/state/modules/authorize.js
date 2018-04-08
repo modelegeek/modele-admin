@@ -19,6 +19,7 @@ const mutations = {
 
 const actions = {
   update ({ commit }, payload){
+    console.log(payload);
     commit('update', payload);
   }
 }

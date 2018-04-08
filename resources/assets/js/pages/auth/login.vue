@@ -7,7 +7,7 @@
         <div class="form-group">
           <input type="email"
                  class="form-control"
-                 id="email-address"
+                 id="email"
                  aria-describedby="emailAddress"
                  placeholder="Email address"
                  v-model="email"
@@ -24,12 +24,13 @@
                  :class="{'is-invalid' : errors.validation.password}"/>
           <div class="invalid-feedback">{{errors.validation.password ? errors.validation.password[0] : ''}}</div>
         </div>
+
         <div class="form-check">
           <input type="checkbox" class="form-control-sm form-check-input" id="remember-me" style="position: relative;">
           <small><label class="form-check-label" for="remember-me">Remember me</label></small>
         </div>
         <div class="mt-3 mb-2">
-          <button type="submit" class="btn btn-sm btn-primary col-12" @click="login">Login</button>
+          <button type="submit" id="login" class="btn btn-sm btn-primary col-12" @click="login">Login</button>
         </div>
       </div>
 
@@ -43,6 +44,7 @@
 <script>
   import ErrorResponse from "../../classes/ErrorResponse";
   import Helper from "../../classes/Helper";
+  import axios from "axios";
 
   export default {
     name: '',
@@ -63,7 +65,7 @@
              .then((response) =>{
                let dataResponse = response.data;
                vm.$store.dispatch('authorize/update', {
-                 token: dataResponse.data.token,
+                 token: dataResponse.access_token,
                })
                this.$router.push({ name: 'dashboard' });
                new Helper().showNoty('Login successfully', 'success');
