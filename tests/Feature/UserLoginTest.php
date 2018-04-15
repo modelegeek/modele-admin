@@ -23,7 +23,7 @@ class UserLoginTest extends TestCase
             'password' => 'secret',
         ];
 
-        $this->post('/api/login', $data)
+        $this->post(route(''), $data)
             ->assertStatus(200)
             ->assertJson([
                 'access_token'  => true,

@@ -11,12 +11,8 @@
 |
 */
 
-Route::post('login', 'Controllers\Auth\LoginController@login');
+Route::post('login', 'Controllers\Auth\LoginController@login')->name('user.login');
 
-Route::group(['middleware' => 'auth:api'], function () {
-    Route::get('/user', 'UserController@index')->name('user.index');
-    Route::post('/user/create', 'UserController@store')->name('user.store');
-    Route::get('/user/edit/{user}', 'UserController@edit')->name('user.edit');
-    Route::patch('/user/edit/{user}', 'UserController@update')->name('user.update');
-    Route::delete('/user/destroy/{user}', 'UserController@destroy')->name('user.destroy');
+Route::group(['middleware' => 'auth:api'], function(){
+    Route::resource('user', 'UserController');
 });
