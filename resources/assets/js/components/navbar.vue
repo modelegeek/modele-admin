@@ -53,11 +53,12 @@
                new Helper().showNoty('Logout successfully', 'success');
              })
              .catch((error) => {
-               vm.errors.update(error.response);
-               if ( vm.errors.general.message != '' ) {
-                 new Helper().showNoty(vm.errors.general.message, 'error');
+               if ( error.response ) {
+                 vm.errors.update(error.response);
+                 if ( vm.errors.general.message != '' ) {
+                   new Helper().showNoty(vm.errors.general.message, 'error');
+                 }
                }
-
              })
       }
     }

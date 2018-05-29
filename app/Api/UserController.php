@@ -3,9 +3,9 @@
 namespace App\Api;
 
 use App\Classes\JsonResponse;
+use App\Http\Requests\UserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
-use UserService;
+use App\Service\UserService;
 use Yajra\DataTables\Facades\DataTables;
 
 class UserController
@@ -24,6 +24,7 @@ class UserController
     }
 
     /**
+     * @param User $user
      * @return \Illuminate\Http\JsonResponse
      */
     public function edit(User $user)
@@ -34,13 +35,17 @@ class UserController
         return JsonResponse::success($developerMsg, $userMsg, $user, 200);
     }
 
-    public function store(Request $request)
+    /**
+     * @param UserRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(UserRequest $request)
     {
-        User::create([
-            'name'     => $request->name,
-            'email'    => $request->email,
-            'password' => $request->password,
-        ]);
+        try {
+            (new UserService)->save($request);
+        } catch (\Exception $e) {
+            // error message
+        }
 
         $developerMsg = 'Success';
         $userMsg = 'Created Successfully';
@@ -48,22 +53,37 @@ class UserController
         return JsonResponse::success($developerMsg, $userMsg, 200);
     }
 
-    public function update(Request $request, User $user)
+    /**
+     * @param UserRequest $request
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(UserRequest $request, User $user)
     {
-        $user->update([
-            'name'     => $request->name,
-            'email'    => $request->email,
-            'password' => $request->password,
-        ]);
+        try {
+            (new UserService($user))->save($request);
+        } catch (\Exception $e) {
+
+        }
+
         $developerMsg = 'Success';
         $userMsg = 'Updated Successfully';
 
         return JsonResponse::success($developerMsg, $userMsg, 200);
     }
 
+    /**
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function destroy(User $user)
     {
-        $user->delete();
+        try {
+            $user->delete();
+        } catch (\Exception $e) {
+
+        }
+
 
         $developerMsg = 'Success';
         $userMsg = 'Deleted Successfully';

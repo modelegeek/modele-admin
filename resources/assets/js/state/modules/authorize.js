@@ -12,7 +12,9 @@ const mutations = {
     state.token_type = payload.token_type;
     state.access_token = payload.access_token;
     state.refresh_token = payload.refresh_token;
-    state.name = payload.username ? payload.username : this.username();
+    if ( payload.username ) {
+      state.name = payload.username;
+    }
 
     localStorage.setItem('authorization', JSON.stringify(payload));
   },
