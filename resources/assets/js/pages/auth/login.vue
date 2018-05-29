@@ -64,7 +64,7 @@
         axios.post('/api/login', data)
              .then((response) => {
                let dataResponse = response.data;
-               vm.$store.dispatch('authorize/login', dataResponse);
+               vm.$store.dispatch('authorize/login', dataResponse.data);
 
                return response;
              })

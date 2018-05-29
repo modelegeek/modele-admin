@@ -4,6 +4,7 @@
 namespace App\Api\Controllers\Auth;
 
 use App\Classes\JsonResponse;
+use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Laravel\Passport\Client;
@@ -102,11 +103,23 @@ class LoginController extends AccessTokenController
      * @param $authenticateToken
      * @return \Illuminate\Http\Response
      */
+    /**
+     * Send the response after the user was authenticated.
+     *
+     * @param Request $request
+     * @param $authenticateToken
+     * @return \Illuminate\Http\JsonResponse
+     */
     protected function sendLoginResponse(Request $request, $authenticateToken)
     {
         $this->clearLoginAttempts($request);
+        $user = User::where('email', $request->email)->first();
 
-        return $authenticateToken;
+        $tokenInfo = json_decode($authenticateToken->content());
+        // if user register through the system without name then will use email as username
+        $tokenInfo->username = $user->name == '' ? $user->email : $user->name;
+
+        return response()->json(['data' => $tokenInfo]);
     }
 
     /**
@@ -120,7 +133,7 @@ class LoginController extends AccessTokenController
         // revoke user token
         $request->user()->token()->revoke();
 
-        return JsonResponse::success(['message' => 'Logout successfully']);
+        return response()->json(['message' => 'Logout successfully']);
     }
 }
 

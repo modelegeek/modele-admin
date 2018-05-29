@@ -41,6 +41,7 @@ abstract class TestCase extends BaseTestCase
 
         $response = $this->post('/api/login', $data);
         $tokenResponse = json_decode($response->getContent());
+        $tokenResponse = $tokenResponse->data;
 
         $headers = [
             'Accept'        => 'application/json',

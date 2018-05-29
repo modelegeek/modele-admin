@@ -26,7 +26,6 @@
 
 <script>
   import RouteLink from "../../../components/route-link";
-  import store from "../../../state";
 
   export default {
 
@@ -42,6 +41,8 @@
 
     mounted() {
       let token = this.$store.getters['authorize/token'];
+
+      // need to check and refresh token in this part
 
       $('#example').DataTable({
         "processing" :true,

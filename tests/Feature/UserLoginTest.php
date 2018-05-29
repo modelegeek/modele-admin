@@ -23,12 +23,14 @@ class UserLoginTest extends TestCase
             'password' => 'secret',
         ];
 
-        $this->post(route(''), $data)
+        $this->post(route('user.login'), $data)
             ->assertStatus(200)
             ->assertJson([
-                'access_token'  => true,
-                'token_type'    => true,
-                'refresh_token' => true,
+                'data' =>[
+                    'access_token'  => true,
+                    'token_type'    => true,
+                    'refresh_token' => true,
+                ]
             ]);
     }
 }

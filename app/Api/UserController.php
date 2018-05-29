@@ -5,7 +5,6 @@ namespace App\Api;
 use App\Classes\JsonResponse;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use UserService;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -38,9 +37,9 @@ class UserController
     public function store(Request $request)
     {
         User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'name'     => $request->name,
+            'email'    => $request->email,
+            'password' => $request->password,
         ]);
 
         $developerMsg = 'Success';
@@ -52,9 +51,9 @@ class UserController
     public function update(Request $request, User $user)
     {
         $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'name'     => $request->name,
+            'email'    => $request->email,
+            'password' => $request->password,
         ]);
         $developerMsg = 'Success';
         $userMsg = 'Updated Successfully';

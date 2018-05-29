@@ -12,7 +12,7 @@ const mutations = {
     state.token_type = payload.token_type;
     state.access_token = payload.access_token;
     state.refresh_token = payload.refresh_token;
-    state.name = payload.username;
+    state.name = payload.username ? payload.username : this.username();
 
     localStorage.setItem('authorization', JSON.stringify(payload));
   },
@@ -60,6 +60,10 @@ const actions = {
     commit('update', payload);
   },
 
+  update({ commit }, payload) {
+    commit('update', payload);
+  },
+
   updateName({ commit }, payload) {
     commit('updateName', payload);
   },
@@ -93,8 +97,8 @@ const getters = {
     return false;
   },
 
-  refresh  :state => state.refresh_token,
-  username :state => state.name,
+  refreshToken :state => state.refresh_token,
+  username     :state => state.name,
 }
 
 export default {
